@@ -11,11 +11,13 @@ const CHANNEL_SCRIPTS: Record<string, string> = {
     discord: 'discord.js',
     telegram: 'telegram.js',
     whatsapp: 'whatsapp.js',
+    mattermost: 'mattermost.js',
 };
 
 const TOKEN_ENV_KEYS: Record<string, string> = {
     discord: 'DISCORD_BOT_TOKEN',
     telegram: 'TELEGRAM_BOT_TOKEN',
+    mattermost: 'MATTERMOST_BOT_TOKEN',
 };
 
 const children = new Map<string, ChildProcess>();
@@ -60,6 +62,12 @@ export function startChannels(): void {
         const env: Record<string, string> = { ...process.env as Record<string, string> };
         if (envKey && token) {
             env[envKey] = token;
+        }
+
+        // Pass additional channel-specific env vars from settings
+        const channelConf = (settings.channels as any)?.[channelId];
+        if (channelId === 'mattermost' && channelConf?.url) {
+            env['MATTERMOST_URL'] = channelConf.url;
         }
 
         log('INFO', `Starting ${channelId} channel...`);
@@ -109,6 +117,13 @@ export function startChannel(channelId: string): boolean {
     const env: Record<string, string> = { ...process.env as Record<string, string> };
     if (envKey && token) {
         env[envKey] = token;
+    }
+
+    // Pass additional channel-specific env vars from settings
+    const settings = getSettings();
+    const channelConf = (settings.channels as any)?.[channelId];
+    if (channelId === 'mattermost' && channelConf?.url) {
+        env['MATTERMOST_URL'] = channelConf.url;
     }
 
     log('INFO', `Starting ${channelId} channel...`);

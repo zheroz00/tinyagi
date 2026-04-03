@@ -328,7 +328,15 @@ export default function AgentConfigPage({
             loaded={heartbeatLoaded}
             onChange={setHeartbeatContent}
             enabled={heartbeatEnabled}
-            onToggle={() => setHeartbeatEnabled(!heartbeatEnabled)}
+            onToggle={() => {
+              const newEnabled = !heartbeatEnabled;
+              setHeartbeatEnabled(newEnabled);
+              saveAgentHeartbeat(agentId, {
+                content: heartbeatContent,
+                enabled: newEnabled,
+                interval: parseInt(heartbeatInterval) || 300,
+              });
+            }}
             interval={heartbeatInterval}
             onIntervalChange={setHeartbeatInterval}
             onSave={handleSaveHeartbeat}

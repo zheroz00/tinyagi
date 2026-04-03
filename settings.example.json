@@ -1,0 +1,36 @@
+{
+  "workspace": {
+    "path": "/home/YOUR_USER/tinyagi-workspace",
+    "name": "tinyagi-workspace"
+  },
+  "channels": {
+    "enabled": ["mattermost"],
+    "mattermost": {
+      "bot_token": "YOUR_MATTERMOST_BOT_TOKEN",
+      "url": "https://your-mattermost-server.com"
+    }
+  },
+  "agents": {
+    "tinyagi": {
+      "name": "TinyAGI Agent",
+      "provider": "anthropic",
+      "model": "opus",
+      "working_directory": "/home/YOUR_USER/tinyagi-workspace/tinyagi"
+    }
+  },
+  "models": {
+    "provider": "anthropic"
+  },
+  "monitoring": {
+    "heartbeat_interval": 3600
+  },
+  "custom_providers": {
+    "openrouter": {
+      "name": "openrouter",
+      "harness": "openai-compat",
+      "base_url": "https://openrouter.ai/api/v1",
+      "api_key": "YOUR_OPENROUTER_API_KEY",
+      "model": "xiaomi/mimo-v2-pro"
+    }
+  }
+}
