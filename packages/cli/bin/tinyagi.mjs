@@ -226,6 +226,11 @@ switch (command) {
         runCliScript('provider.js', ['model', restArgs[0] || '']);
         break;
 
+    // ── Models (browse / list) ─────────────────────────────────────────────
+    case 'models':
+        runCliScript('models.js', restArgs);
+        break;
+
     // ── Office ──────────────────────────────────────────────────────────────
 
     case 'office': {
@@ -320,6 +325,8 @@ switch (command) {
         console.log('  provider [name] [--model model]  Show or switch AI provider');
         console.log('  provider list|add|remove         Manage custom providers');
         console.log('  model [name]                     Show or switch AI model');
+        console.log('  models list                      Show all agent model assignments');
+        console.log('  models browse [filter]           Browse OpenRouter models interactively');
         console.log('');
         console.log('Other:');
         console.log('  reset <id> [...]         Reset specific agent conversation(s)');

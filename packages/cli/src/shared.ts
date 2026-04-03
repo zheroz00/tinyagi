@@ -107,6 +107,7 @@ export function anthropicModelOptions(): ProviderOption[] {
     return [
         { value: 'sonnet', label: 'Sonnet', hint: 'fast, recommended' },
         { value: 'opus', label: 'Opus', hint: 'smartest' },
+        { value: 'haiku', label: 'Haiku', hint: 'cheapest' },
         { value: '__custom__', label: 'Custom', hint: 'enter model name' },
     ];
 }
@@ -184,5 +185,6 @@ export function harnessOptions(): ProviderOption[] {
     return [
         { value: 'claude', label: 'claude (Anthropic CLI)' },
         { value: 'codex', label: 'codex (OpenAI CLI)' },
+        { value: 'openai-compat', label: 'openai-compat (OpenRouter, etc.)' },
     ];
 }

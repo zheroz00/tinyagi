@@ -132,7 +132,7 @@ function modelSet(modelName: string) {
     const settings = requireSettings();
 
     // Determine provider from model name
-    const anthropicModels = ['sonnet', 'opus'];
+    const anthropicModels = ['sonnet', 'opus', 'haiku'];
     const openaiModels = ['gpt-5.2', 'gpt-5.3-codex'];
 
     let targetProvider: string;
@@ -141,9 +141,9 @@ function modelSet(modelName: string) {
     } else if (openaiModels.includes(modelName)) {
         targetProvider = 'openai';
     } else {
-        p.log.error('Usage: model {sonnet|opus|gpt-5.2|gpt-5.3-codex}');
+        p.log.error('Usage: model {sonnet|opus|haiku|gpt-5.2|gpt-5.3-codex}');
         p.log.message('');
-        p.log.message('Anthropic models: sonnet, opus');
+        p.log.message('Anthropic models: sonnet, opus, haiku');
         p.log.message('OpenAI models: gpt-5.2, gpt-5.3-codex');
         process.exit(1);
     }
